@@ -1,0 +1,6 @@
+[submodule "packages/vortex-msgs"]
+	path = packages/vortex-msgs
+	url = https://github.com/vortexntnu/vortex-msgs.git
+[submodule "packages/vortex-vkf"]
+	path = packages/vortex-vkf
+	url = https://github.com/vortexntnu/vortex-vkf.git
