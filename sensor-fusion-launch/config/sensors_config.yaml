@@ -1,0 +1,8 @@
+lidar:
+  enable: true
+  sensor_hostname: "10.0.0.87"
+  lidar_mode: "10x1024" # 512x10, 512x20, 1024x10, 1024x20, 2048x10, 4096x5
+
+camera:
+  enable: true
+  camera_model: "zed2i"
