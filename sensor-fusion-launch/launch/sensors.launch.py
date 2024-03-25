@@ -66,7 +66,7 @@ def generate_launch_description():
             'camera_model': launch_args["camera"]["camera_model"],
             'config_path': os.path.join(get_package_share_directory('sensor_fusion_launch'), 'config', 'zed_common.yaml')
             
-        }
+        }.items(),
         condition=IfCondition(enable_camera)
     )
     
