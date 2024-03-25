@@ -21,29 +21,29 @@ def generate_launch_description():
     enable_lidar_arg = DeclareLaunchArgument(
         'enable_lidar',
         default_value=str(launch_args['lidar']['enable']),
-        description='enable LiDAR'
+        description='enable LiDAR',
     )
     
     sensor_hostname = LaunchConfiguration('sensor_hostname')
     sensor_hostname_arg = DeclareLaunchArgument(
         'sensor_hostname',
         default_value=launch_args['lidar']['sensor_hostname'],
-        description='hostname of the sensor'
+        description='hostname of the sensor',
     )
     
     lidar_mode = LaunchConfiguration('lidar_mode')
     lidar_mode_arg = DeclareLaunchArgument(
         'lidar_mode',
         default_value=launch_args['lidar']['lidar_mode'],
-        description='LiDAR mode'
-        choices=['512x10', '512x20', '1024x10', '1024x20', '2048x10', '4096x5']
+        description='LiDAR mode',
+        choices=['512x10', '512x20', '1024x10', '1024x20', '2048x10', '4096x5'],
     )
     
     enable_camera = LaunchConfiguration('enable_camera')
     enable_camera_arg = DeclareLaunchArgument(
         'enable_camera',
         default_value=str(launch_args["camera"]["enable"]),
-        description='enable Camera'
+        description='enable Camera',
     )
     
     lidar_launch = IncludeLaunchDescription(
@@ -55,7 +55,7 @@ def generate_launch_description():
             'sensor_hostname': sensor_hostname,
             'lidar_mode': lidar_mode,
         }.items(),
-        condition=IfCondition(enable_lidar)
+        condition=IfCondition(enable_lidar),
     )
     
     camera_launch = IncludeLaunchDescription(
@@ -64,10 +64,10 @@ def generate_launch_description():
         ),
         launch_arguments={
             'camera_model': launch_args["camera"]["camera_model"],
-            'config_path': os.path.join(get_package_share_directory('sensor_fusion_launch'), 'config', 'zed_common.yaml')
+            'config_path': os.path.join(get_package_share_directory('sensor_fusion_launch'), 'config', 'zed_common.yaml'),
             
         }.items(),
-        condition=IfCondition(enable_camera)
+        condition=IfCondition(enable_camera),
     )
     
     
@@ -78,7 +78,7 @@ def generate_launch_description():
         lidar_mode_arg,
         enable_camera_arg,
         lidar_launch,
-        camera_launch
+        camera_launch,
     ])
     
 generate_launch_description()
