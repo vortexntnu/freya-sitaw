@@ -43,7 +43,7 @@ def generate_launch_description():
         launch_arguments={
             'camera_model': 'zed2i',
             'camera_name' : 'zed',
-            'config_path': os.path.join(get_package_share_directory('sensor_fusion_launch'), 'config', 'zed_driver_params.yaml'),
+            'config_path': os.path.join(get_package_share_directory('freya_sitaw_setup'), 'config', 'zed_driver_params.yaml'),
             
         }.items(),
         condition=IfCondition(enable_camera),
