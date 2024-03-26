@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(sensor_fusion_launch)
+project(freya_sitaw_setup)
 
 find_package(ament_cmake REQUIRED)
 

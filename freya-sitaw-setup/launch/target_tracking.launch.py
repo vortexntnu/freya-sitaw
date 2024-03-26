@@ -11,7 +11,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
     
-    default_params_file = os.path.join(get_package_share_directory('sensor_fusion_launch'),'config','target_tracking_params.yaml')
+    default_params_file = os.path.join(get_package_share_directory('freya_sitaw_setup'),'config','target_tracking_params.yaml')
     params_file = LaunchConfiguration('params_file')
     params_file_arg = DeclareLaunchArgument(
         'params_file',
