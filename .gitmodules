@@ -1,0 +1,19 @@
+[submodule "packages/vortex-msgs"]
+	path = packages/vortex-msgs
+	url = https://github.com/vortexntnu/vortex-msgs.git
+	branch = ROS2
+[submodule "packages/vortex-vkf"]
+	path = packages/vortex-vkf
+	url = https://github.com/vortexntnu/vortex-vkf.git
+	branch = main
+[submodule "packages/vortex-sensor-fusion"]
+	path = packages/vortex-sensor-fusion
+	url = https://github.com/vortexntnu/vortex-sensor-fusion.git
+	branch = main
+[submodule "packages/ouster-lidar-ros2-driver"]
+	path = packages/ouster-lidar-ros2-driver
+	url = https://github.com/vortexntnu/ouster-lidar-ros2-driver.git
+	branch = ros2
+[submodule "packages/zed-ros2-wrapper"]
+	path = packages/zed-ros2-wrapper
+	url = https://github.com/vortexntnu/zed-ros2-wrapper.git
