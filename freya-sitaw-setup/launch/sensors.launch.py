@@ -43,6 +43,9 @@ def generate_launch_description():
         launch_arguments={
             'camera_model': 'zed2i',
             'camera_name' : 'zed',
+            'publish_tf' : 'false',
+            'publish_map_tf' : 'false',
+            'publish_imu_tf' : 'false',
             'config_path': os.path.join(get_package_share_directory('freya_sitaw_setup'), 'config', 'zed_driver_params.yaml'),
             
         }.items(),

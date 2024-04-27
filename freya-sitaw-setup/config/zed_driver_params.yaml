@@ -48,7 +48,7 @@
             qos_durability: 2 # '1': TRANSIENT_LOCAL - '2': VOLATILE
 
         depth:
-            depth_mode: 'ULTRA' # Matches the ZED SDK setting: 'NONE', 'PERFORMANCE', 'QUALITY', 'ULTRA', 'NEURAL' - Note: if 'NONE' all the modules that requires depth extraction are disabled by default (Pos. Tracking, Obj. Detection, Mapping, ...)
+            depth_mode: 'PERFORMANCE' # Matches the ZED SDK setting: 'NONE', 'PERFORMANCE', 'QUALITY', 'ULTRA', 'NEURAL' - Note: if 'NONE' all the modules that requires depth extraction are disabled by default (Pos. Tracking, Obj. Detection, Mapping, ...)
             depth_stabilization: 1 # Forces positional tracking to start if major than 0 - Range: [0,100]
             openni_depth_mode: false # 'false': 32bit float [meters], 'true': 16bit unsigned int [millimeters]
             point_cloud_freq: 10.0 # [DYNAMIC] - frequency of the pointcloud publishing (equal or less to `grab_frame_rate` value)
@@ -61,11 +61,11 @@
             qos_durability: 2 # '1': TRANSIENT_LOCAL - '2': VOLATILE 
 
         pos_tracking:
-            pos_tracking_enabled: true # True to enable positional tracking from start
+            pos_tracking_enabled: false # True to enable positional tracking from start
             pos_tracking_mode: 'STANDARD' # Matches the ZED SDK setting: 'QUALITY', 'STANDARD'
-            imu_fusion: true # enable/disable IMU fusion. When set to false, only the optical odometry will be used.
-            publish_tf: true # [usually overwritten by launch file] publish `odom -> camera_link` TF
-            publish_map_tf: true # [usually overwritten by launch file] publish `map -> odom` TF
+            imu_fusion: false # enable/disable IMU fusion. When set to false, only the optical odometry will be used.
+            publish_tf: false # [usually overwritten by launch file] publish `odom -> camera_link` TF
+            publish_map_tf: false # [usually overwritten by launch file] publish `map -> odom` TF
             map_frame: 'map'
             odometry_frame: 'odom'
             area_memory_db_path: ''
