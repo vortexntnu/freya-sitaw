@@ -24,6 +24,13 @@ def generate_launch_description():
         default_value='True',
         description='enable Camera',
     )
+
+    enable_seapath = LaunchConfiguration('enable_seapath')
+    enable_seapath_arg = DeclareLaunchArgument(
+        'enable_seapath',
+        default_value='True',
+        description='enable Seapath',
+    )
     
     lidar_launch = IncludeLaunchDescription(
         launch_description_source=PythonLaunchDescriptionSource(
@@ -48,14 +55,26 @@ def generate_launch_description():
         }.items(),
         condition=IfCondition(enable_camera),
     )
+
+    seapath_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(get_package_share_directory('seapath_ros_driver'), 'launch', 'seapath_ros_driver_launch.py')
+        ),
+        launch_arguments={
+            'params_file': os.path.join(get_package_share_directory('freya_sitaw_setup'), 'config', 'seapath_driver_params.yaml'),
+        }.items(),
+        condition=IfCondition(enable_seapath),
+    )
     
     
         
     return LaunchDescription([
         enable_lidar_arg,
         enable_camera_arg,
+        enable_seapath_arg,
         lidar_launch,
         camera_launch,
+        seapath_launch,
     ])
     
 generate_launch_description()
