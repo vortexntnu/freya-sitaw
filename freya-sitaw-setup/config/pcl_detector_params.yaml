@@ -1,0 +1,36 @@
+pcl_detector_node:
+  ros__parameters:
+    topic_pointcloud_in: "ouster/points"
+    topic_landmask_in: "landmask"
+    topic_walls_out: "wall_poses"
+    topic_clusters_out: "vortex/clusters"
+
+    processor:
+      voxel_leaf_size: 0.25 # Voxel grid leaf size
+      model_thresh: 0.5   # Threshold for MSAC model
+      model_iterations: 100 # Number of iterations for MSAC
+      prev_line_thresh: 1.0 # Threshold to count inliers for prev lines
+      project_thresh: 0.75 # Threshold for point to remove close to walls
+      wall_neighbour_dist: 1.5  # Minimum distance between points on line to extend wall
+      wall_min_points: 35  # Minimum number of points to consider a wall
+      wall_min_length: 5.0  # Minimum length of wall
+    
+    apply_landmask: true
+    apply_voxelgrid: true
+    detect_lines: true
+    transform_lines: false
+    transform_timeout_nsec: 50000000
+    prev_line_min_inliers: 50
+    new_lines: 1  # Number of new lines to find for new callback
+    fixed_frame: "map"
+    
+
+    detector: "dbscan" # one of "dbscan", "euclidean"
+    
+    dbscan:
+      epsilon: 0.8
+      min_points: 15
+
+    euclidean:
+      cluster_tolerance: 1.0
+      min_points: 20

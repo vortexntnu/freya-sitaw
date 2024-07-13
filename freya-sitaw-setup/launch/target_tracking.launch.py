@@ -34,12 +34,14 @@ def generate_launch_description():
         description='enable PCL detector'
     )
 
-    enable_landmark_server = LaunchConfiguration('landmark_server')
-    enable_landmark_server_arg = DeclareLaunchArgument(
-        'landmark_server',
-        default_value='false',
-        description='enable landmark server',
-    )
+    pcl_detector_node = Node(
+            package='pcl_detector',
+            executable='pcl_detector_node',
+            name='pcl_detector_node',
+            parameters=[os.path.join(get_package_share_directory('freya_sitaw_setup'),'config','pcl_detector_params.yaml')],
+            output='screen',
+            condition=IfCondition(enable_pcl_detector)
+        )
     
     enable_visualization = LaunchConfiguration('visualization')
     enable_visualization_arg = DeclareLaunchArgument(
@@ -48,21 +50,7 @@ def generate_launch_description():
         description='enable visualization'
     )
     
-    pcl_detector_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_directory('pcl_detector'), 'launch', 'pcl_detector_launch.py')
-        ),
-        condition=IfCondition(enable_pcl_detector)
-    )
-        
-    landmark_server_node = Node(
-        package='landmark_server',
-        executable='landmark_server_node',
-        name='landmark_server_node',
-        output='screen',
-        condition=IfCondition(enable_landmark_server),
-    )
-        
+
     target_tracking_visualization_node = Node(
         package='target_tracking_visualization',
         executable='target_tracking_visualization_node',
@@ -74,10 +62,8 @@ def generate_launch_description():
     return LaunchDescription([
         params_file_arg,
         enable_pcl_detector_arg,
-        enable_landmark_server_arg,
+        pcl_detector_node,
         enable_visualization_arg,
         target_tracking_node,
-        pcl_detector_launch,
-        landmark_server_node,
         target_tracking_visualization_node,
     ])
