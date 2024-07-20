@@ -26,6 +26,20 @@ def generate_launch_description():
         parameters=[params_file],
         output='screen',
     )
+
+    enable_target_tracking = LaunchConfiguration('target_tracking')
+    enable_target_tracking_arg = DeclareLaunchArgument(
+        'target_tracking',
+        default_value='true',
+        description='enable target tracking'
+    )
+
+    enable_wall_tracking = LaunchConfiguration('wall_tracking')
+    enable_wall_tracking_arg = DeclareLaunchArgument(
+        'wall_tracking',
+        default_value='true',
+        description='enable wall tracking'
+    )
     
     enable_pcl_detector = LaunchConfiguration('pcl_detector')
     enable_pcl_detector_arg = DeclareLaunchArgument(
@@ -42,6 +56,15 @@ def generate_launch_description():
             output='screen',
             condition=IfCondition(enable_pcl_detector)
         )
+    
+    wall_tracking_node = Node(
+        package='wall_tracking',
+        executable='wall_tracking_node',
+        name='wall_tracking_node',
+        parameters=[os.path.join(get_package_share_directory('freya_sitaw_setup'),'config','wall_tracking_params.yaml')],
+        output='screen',
+        condition=IfCondition(enable_wall_tracking),
+    )
     
     enable_visualization = LaunchConfiguration('visualization')
     enable_visualization_arg = DeclareLaunchArgument(
@@ -64,6 +87,9 @@ def generate_launch_description():
         enable_pcl_detector_arg,
         pcl_detector_node,
         enable_visualization_arg,
+        enable_wall_tracking_arg,
+        wall_tracking_node,
+        enable_target_tracking_arg,
         target_tracking_node,
         target_tracking_visualization_node,
     ])
