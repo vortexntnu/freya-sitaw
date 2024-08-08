@@ -3,13 +3,13 @@ target_tracking_node:
     topic_pointcloud_in: "vortex/clusters"
     topic_landmarks_out: "target_tracking/landmarks"
     topic_visualization_parameters: "target_tracking/parameters"
-    clutter_rate: 0.001
+    clutter_rate: 0.000001
     probability_of_detection: 0.7
     probability_of_survival: 0.99
     gate_threshold: 2.5
     min_gate_threshold: 1.0
-    max_gate_threshold: 10.0
-    confirmation_threshold: 0.1
+    max_gate_threshold: 2.0
+    confirmation_threshold: 0.6
     deletion_threshold: 0.2
     initial_existence_probability: 0.4
     std_velocity: 0.2

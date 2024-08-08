@@ -24,6 +24,7 @@ def generate_launch_description():
         executable='target_tracking_node',
         name='target_tracking_node',
         parameters=[params_file],
+        # arguments=['--ros-args', '--log-level', 'DEBUG'],
         output='screen',
     )
 
@@ -37,7 +38,7 @@ def generate_launch_description():
     enable_wall_tracking = LaunchConfiguration('wall_tracking')
     enable_wall_tracking_arg = DeclareLaunchArgument(
         'wall_tracking',
-        default_value='true',
+        default_value='false',
         description='enable wall tracking'
     )
     
@@ -53,6 +54,7 @@ def generate_launch_description():
             executable='pcl_detector_node',
             name='pcl_detector_node',
             parameters=[os.path.join(get_package_share_directory('freya_sitaw_setup'),'config','pcl_detector_params.yaml')],
+            # arguments=['--ros-args', '--log-level', 'DEBUG'],
             output='screen',
             condition=IfCondition(enable_pcl_detector)
         )
