@@ -17,6 +17,8 @@ pcl_detector_node:
     
     apply_landmask: true
     apply_voxelgrid: true
+    map_to_grid: true
+    cell_inc_value: 20
     detect_lines: false
     transform_lines: false
     transform_timeout_nsec: 50000000
